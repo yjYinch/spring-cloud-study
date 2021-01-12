@@ -89,7 +89,7 @@ SpringCloud主要分为：
 
 
 
-### 3.1 服务注册中心
+### 3.1  服务注册中心
 
 ![image-20210110211150822](C:\Users\10538\AppData\Roaming\Typora\typora-user-images\image-20210110211150822.png)
 
@@ -128,7 +128,31 @@ SpringCloud主要分为：
 
 
 
+### 3.4 自我保护
+
+```markdown
+# 原理 
+	如果Eureka在服务端Server一定时间内没有收到Eureka Client发送心跳包，便会直接从服务注册列表中剔除该服务，但是在短时间内丢失了大量的服务实例心跳，这时候Eureka Server会开启自我保护机制，不会剔除该服务。
+	在自我保护模式中，Eureka Server会保护服务注册表中的信息，不再注销任何服务实例。
+```
+
+关闭自我保护：
+
+```yaml
+Eureka.server.enable.
+```
 
 
-## 面试题
+
+### 4.1 Zookeeper服务注册
+
+
+
+```markdown
+# 1. 安装Zookeeper
+# 2. 关闭防火墙
+	
+```
+
+
 
