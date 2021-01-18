@@ -6,8 +6,10 @@ import com.zyj.cloud.beans.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 
 /**
@@ -44,5 +46,10 @@ public class PaymentController {
         }
         log.info("插入成功，端口号：{}", serverPort);
         return Result.success(null);
+    }
+
+    @GetMapping("/payment/getPort")
+    public String getServerPort(){
+        return serverPort;
     }
 }

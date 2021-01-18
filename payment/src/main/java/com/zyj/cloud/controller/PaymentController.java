@@ -45,4 +45,9 @@ public class PaymentController {
         log.info("插入成功，端口号：{}", serverPort);
         return Result.success(null);
     }
+
+    @GetMapping("/payment/getPort")
+    public String getServerPort(){
+        return serverPort;
+    }
 }
