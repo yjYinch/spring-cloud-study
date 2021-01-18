@@ -2,6 +2,7 @@ package com.zyj.cloud.controller;
 
 import com.zyj.cloud.beans.PaymentBean;
 import com.zyj.cloud.beans.Result;
+import com.zyj.cloud.service.LoadBalancer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
@@ -9,6 +10,7 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.URI;
 import java.util.List;
 
 /**
@@ -32,6 +34,9 @@ public class OrderController {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Autowired
+    private LoadBalancer loadBalancer;
+
     @PostMapping("/order/payment/insert")
     public Result insertPayment(@RequestBody PaymentBean paymentBean){
         log.info("接收到数据：{}", paymentBean);
@@ -54,5 +59,17 @@ public class OrderController {
             }
         }
         return services;
+    }
+
+    @GetMapping("/get/payment/getPort")
+    public String getPaymentServerPort(){
+        List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
+        if (instances == null || instances.size() == 0){
+            return null;
+        }
+        ServiceInstance serviceInstance = loadBalancer.instances(instances);
+        URI uri = serviceInstance.getUri();
+        String host = serviceInstance.getHost();
+        return restTemplate.getForObject(uri+"/payment/getPort", String.class);
     }
 }

@@ -144,15 +144,68 @@ Eureka.server.enable.
 
 
 
-### 4.1 Zookeeper服务注册
 
 
+## Ribbon
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 项目架构
 
 ```markdown
-# 1. 安装Zookeeper
-# 2. 关闭防火墙
+# 1. 项目框架
+	基于SpringCloud或者Dubbo（已停更）的微服务框架，需要掌握的技术主要有以下几点：
+	(1) 服务注册：Nacos（Spring Cloud Alibaba）、Eureka中的一种
+	(2) 服务调用：Ribbon、LoadBalancer、OpenFeign中的一种
+	(3) 服务降级、熔断、限流：Sentienl(Spring Cloud Alibaba)、Hystrix中的一种
+	(4) 服务网关：GateWay
+	(5) 服务配置：Nacos（Spring Cloud Alibaba）
+	(6) 服务总线：Nacos（Spring Cloud Alibaba）
 	
+# 2. 每个微服务都是基于SpringBoot搭建的项目
+	SpringBoot、Spring、SpringMVC
+# 3. 缓存技术
+	redis
+# 4. 消息中间件
+	RabbitMQ消息队列
+# 5. 持久层
+	Mybatis、MyBatis Plus
+# 6. 数据库
+	关系型数据库：MySQL、PG
+	非关系型数据库：MongoDB
 ```
-
-
 
