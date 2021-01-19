@@ -14,6 +14,7 @@
         <module>eureka-server</module>
         <module>eureka-02</module>
         <module>payment-02</module>
+        <module>openfeign-order</module>
     </modules>
 
     <packaging>pom</packaging>
