@@ -28,6 +28,7 @@ public class LoadBalancerImpl implements LoadBalancer {
             current = atomicInteger.get();
             next = current + 1;
         } while (!atomicInteger.compareAndSet(current, next));
+        log.info("访问次数next: {}", next);
         return next;
     }
 

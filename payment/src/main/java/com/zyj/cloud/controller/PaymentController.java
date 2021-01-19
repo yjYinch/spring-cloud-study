@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author: zhangyijun
@@ -48,6 +49,16 @@ public class PaymentController {
 
     @GetMapping("/payment/getPort")
     public String getServerPort(){
+        return serverPort;
+    }
+
+    @GetMapping("/payment/timeout/getPort")
+    public String getServerPortWhenTimeout(){
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            log.info("超时异常");
+        }
         return serverPort;
     }
 }

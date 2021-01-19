@@ -152,7 +152,70 @@ Eureka.server.enable.
 
 
 
+## Feign
 
+Feign是Spring Cloud组建中的一个轻量级RESTful的HTTP服务客户端，Feign内置了Ribbon，用来做客户端的负载均衡，去调用服务注册中心的服务。
+
+```markdown
+# 1. 使用Feign的注解定义注解，调用这个接口，就可以调用服务注册中心的服务
+
+# 2. 创建一个接口，并在接口上添加注解说明
+```
+
+服务接口绑定器，实现方式：接口+注解，可以替换Ribbon+RestTemplate。
+
+```xml
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-feign</artifactId>
+</dependency>
+```
+
+
+
+## 服务调用OpenFeign
+
+**1. 特点**
+
+`OpenFeign`是Spring Cloud在Feign的基础上支持SpringMVC的注解。
+
+```xml
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-openfeign</artifactId>
+</dependency>
+```
+
+```markdown
+# 1. OpenFeign特点
+	集成了Ribbon, 自带负载均衡
+# 2. 调用方式
+	服务1Controller --> OpenFrign jar包Service --> 被调用房Contoller
+```
+
+2. **超时控制**
+
+```markdown
+# 1. Feign超时时间
+	Feign默认的客户端只等待1秒钟，但是服务端处理需要超过1秒，导致客户端调用超时，为了避免这种情况，需要设置Feign客户端的超时控制。
+# 2. 如何配置
+	在yml文件中配置超时情况。由于OpenFeign默认支持ribbon，所以添加Ribbon的超时时间即可。
+```
+
+
+
+## 服务降级HyStrix
+
+1. **服务雪崩**
+
+   ```markdown
+   # 1. 服务雪崩
+   	A -> B -> C...
+   # 2. Hystrix解决方案
+   	能够保证在一个依赖出现问题的情况下，不会导致整体服务失败，避免级联故障，以提高分布式系统的弹性。
+   ```
+
+2. 
 
 
 
@@ -193,15 +256,15 @@ Eureka.server.enable.
 	(2) 服务调用：Ribbon、LoadBalancer、OpenFeign中的一种
 	(3) 服务降级、熔断、限流：Sentienl(Spring Cloud Alibaba)、Hystrix中的一种
 	(4) 服务网关：GateWay
-	(5) 服务配置：Nacos（Spring Cloud Alibaba）
-	(6) 服务总线：Nacos（Spring Cloud Alibaba）
-	
+	(5) 服务配置：Nacos（Spring Cloud Alibaba）、Config
+	(6) 服务总线：Nacos（Spring Cloud Alibaba）、Bus
+
 # 2. 每个微服务都是基于SpringBoot搭建的项目
 	SpringBoot、Spring、SpringMVC
 # 3. 缓存技术
 	redis
 # 4. 消息中间件
-	RabbitMQ消息队列
+	RabbitMQ消息队列、Kafka
 # 5. 持久层
 	Mybatis、MyBatis Plus
 # 6. 数据库
