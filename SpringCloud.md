@@ -215,7 +215,41 @@ Feign是Spring Cloud组建中的一个轻量级RESTful的HTTP服务客户端，F
    	能够保证在一个依赖出现问题的情况下，不会导致整体服务失败，避免级联故障，以提高分布式系统的弹性。
    ```
 
-2. 
+2. 服务降级
+
+   ```markdown
+   # 1. 服务降级策略
+   	 服务器忙，请稍后重试，不应让客户端等待而是应该返回一个友好提示， 使用的策略是fallback
+   # 2. 哪些情况会导致服务降级
+   	a. 程序运行异常
+   	b. 超时
+   	c. 服务熔断引发服务降级
+   	d. 线程满
+   ```
+
+   
+
+3. 服务熔断
+
+   ```markdown
+   # 1. 类比保险丝达到最大服务访问后，直接拒绝访问，拉闸限电，然后调用服务降级的策略返回友好提示
+   # 2. 服务降级 --> 进而熔断 --> 恢复调用链路
+   ```
+
+4. 注解
+
+   ```java
+   // 兜底方案
+   @HystrixCommand(fallbackMethod ="指定错误方法名", commandProperties = {
+       @HystrixProperty(name="execution.isolation.thread.timeoutMilliseconds", value="300")
+   })
+   
+   // 2. 主启动类上添加@EnableCircuitBreaker
+   ```
+
+   
+
+5. 
 
 
 

@@ -1,5 +1,6 @@
 package com.zyj.cloud.controller;
 
+import com.zyj.cloud.service.PaymentHystrixService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,21 +18,19 @@ import java.util.concurrent.TimeUnit;
 @RestController
 public class PaymentHystrixController {
 
+    @Autowired
+    private PaymentHystrixService service;
+
     @Value("${server.port}")
     private String serverPort;
 
     @GetMapping("/payment/normal")
     public String getServerPort(){
-        return "线程名："+Thread.currentThread().getName();
+        return service.getServerPort();
     }
 
     @GetMapping("/payment/timeout")
     public String getServerPortWhenTimeout(){
-        try {
-            TimeUnit.SECONDS.sleep(3);
-        } catch (InterruptedException e) {
-            log.info("超时异常");
-        }
-        return "线程名："+Thread.currentThread().getName();
+        return service.getServerPortWhenTimeout();
     }
 }
