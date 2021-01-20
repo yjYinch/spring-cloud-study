@@ -14,3 +14,6 @@ ribbon:
 #  level:
 #    # feign日志以什么级别监控哪个接口
 #    com.zyj.cloud.service.PaymentFeign: debug
+feign:
+  hystrix:
+    enabled: true

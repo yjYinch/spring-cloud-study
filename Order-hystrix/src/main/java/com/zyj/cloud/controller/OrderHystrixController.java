@@ -1,5 +1,7 @@
 package com.zyj.cloud.controller;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.zyj.cloud.beans.Result;
 import com.zyj.cloud.service.PaymentFeign;
 import lombok.extern.slf4j.Slf4j;
@@ -27,8 +29,16 @@ public class OrderHystrixController {
     }
 
     @GetMapping("/hystrix/timeout/get")
+    @HystrixCommand(fallbackMethod = "getWhenTimeoutException", commandProperties = {
+            @HystrixProperty(name="execution.isolation.thread.timeoutInMilliseconds", value="3000")
+    })
     public Result getWhenTimeout(){
+        int a = 1/0;
         String timeout = paymentFeign.timeout();
         return Result.success(timeout);
+    }
+
+    public Result getWhenTimeoutException(){
+        return Result.error();
     }
 }
