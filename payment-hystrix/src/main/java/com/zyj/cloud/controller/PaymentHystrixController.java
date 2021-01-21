@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.concurrent.TimeUnit;
@@ -32,5 +33,16 @@ public class PaymentHystrixController {
     @GetMapping("/payment/timeout")
     public String getServerPortWhenTimeout(){
         return service.getServerPortWhenTimeout();
+    }
+
+    @GetMapping("/payment/circuit")
+    public String paymentCircuitBreaker(Integer id){
+        log.info("当前id={}", id);
+        try {
+            return service.paymentCircuitBreaker(id);
+        } catch (Exception e) {
+            log.info("调用service层的paymentCircuitBreaker方法报错");
+            return "error";
+        }
     }
 }
