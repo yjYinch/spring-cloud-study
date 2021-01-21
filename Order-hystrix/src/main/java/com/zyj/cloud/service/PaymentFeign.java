@@ -30,4 +30,7 @@ public interface PaymentFeign {
      */
     @GetMapping("/payment/timeout")
     String timeout();
+
+    @GetMapping("/payment/circuit/{id}")
+    String paymentCircuitBreaker(@PathVariable Integer id);
 }

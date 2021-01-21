@@ -23,6 +23,17 @@ public class Result {
         return result;
     }
 
+    public static Result error(String message){
+        if (message == null){
+            return error();
+        }
+        Result result = new Result();
+        result.setCode(-1);
+        result.setMessage(message);
+        result.setData(null);
+        return result;
+    }
+
     public static Result error(){
         Result result = new Result();
         result.setCode(-1);

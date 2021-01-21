@@ -241,15 +241,36 @@ Feign是Spring Cloud组建中的一个轻量级RESTful的HTTP服务客户端，F
    ```java
    // 兜底方案
    @HystrixCommand(fallbackMethod ="指定错误方法名", commandProperties = {
-       @HystrixProperty(name="execution.isolation.thread.timeoutMilliseconds", value="300")
+       @HystrixProperty(name="execution.isolation.thread.timeoutMilliseconds", value="3000")
    })
    
    // 2. 主启动类上添加@EnableCircuitBreaker
    ```
 
+5. 全局服务降级
+
+   ```markdown
+   # 这样做的目的是为了简化不用在每个方法上都配置，可以全局配置
+   	
+   
+   ```
+
    
 
-5. 
+6. `@HystrixCommand`注解中的参数作用
+
+   ```java
+   @HystrixProperty(name="execution.isolation.thread.timeoutInMilliseconds", value = "3000") //接口超时设置
+   
+   ```
+
+   
+
+7. 熔断
+
+   
+
+8. 
 
 
 
@@ -257,52 +278,21 @@ Feign是Spring Cloud组建中的一个轻量级RESTful的HTTP服务客户端，F
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## 项目架构
-
-```markdown
-# 1. 项目框架
-	基于SpringCloud或者Dubbo（已停更）的微服务框架，需要掌握的技术主要有以下几点：
-	(1) 服务注册：Nacos（Spring Cloud Alibaba）、Eureka中的一种
-	(2) 服务调用：Ribbon、LoadBalancer、OpenFeign中的一种
-	(3) 服务降级、熔断、限流：Sentienl(Spring Cloud Alibaba)、Hystrix中的一种
-	(4) 服务网关：GateWay
-	(5) 服务配置：Nacos（Spring Cloud Alibaba）、Config
-	(6) 服务总线：Nacos（Spring Cloud Alibaba）、Bus
-
-# 2. 每个微服务都是基于SpringBoot搭建的项目
-	SpringBoot、Spring、SpringMVC
-# 3. 缓存技术
-	redis
-# 4. 消息中间件
-	RabbitMQ消息队列、Kafka
-# 5. 持久层
-	Mybatis、MyBatis Plus
-# 6. 数据库
-	关系型数据库：MySQL、PG
-	非关系型数据库：MongoDB
+```java
+2021-01-21 13:56:53.405  INFO 2200 --- [trap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
 ```
+
+此日志打印的原因是：springcloud的注册中心客户端会每隔一定时间向注册中心服务端发送心跳，用此来判断注册中心服务端是否运行正常。
+
+
+
+
+
+
+
+
+
+
+
+
 
