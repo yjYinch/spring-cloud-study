@@ -1,7 +1,0 @@
-com\zyj\cloud\PaymentMain.class
-com\zyj\cloud\service\PaymentService.class
-com\zyj\cloud\beans\Result.class
-com\zyj\cloud\controller\PaymentController.class
-com\zyj\cloud\beans\PaymentBean.class
-com\zyj\cloud\mapper\PaymentMapper.class
-com\zyj\cloud\service\impl\PaymentServiceImpl.class
