@@ -35,8 +35,8 @@ public class PaymentHystrixController {
         return service.getServerPortWhenTimeout();
     }
 
-    @GetMapping("/payment/circuit")
-    public String paymentCircuitBreaker(Integer id){
+    @GetMapping("/payment/circuit/{id}")
+    public String paymentCircuitBreaker(@PathVariable("id") Integer id){
         log.info("当前id={}", id);
         try {
             return service.paymentCircuitBreaker(id);
