@@ -17,6 +17,8 @@
         <module>openfeign-order</module>
         <module>payment-hystrix</module>
         <module>Order-hystrix</module>
+        <module>gateway-8401</module>
+        <module>payment-gateway-8204</module>
     </modules>
 
     <packaging>pom</packaging>

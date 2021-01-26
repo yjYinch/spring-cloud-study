@@ -1,6 +1,8 @@
 # SpringCloud
 
-SpringCloud + SpringCloud alibaba
+Sp
+
+ringCloud + SpringCloud alibaba
 
 技术要求：
 
@@ -286,13 +288,26 @@ Feign是Spring Cloud组建中的一个轻量级RESTful的HTTP服务客户端，F
 
 
 
+## 服务网关GateWay
+
+<span style='color:red'>为什么有负载均衡了，还需要使用网关呢？</span>
+
+```markdown
+# 执行过程
+	先根据断言条件找到指定的微服务，再路由转发，过滤可以在转发前或转发后加一些自定义的东西。
+```
 
 
 
+三大核心：
 
+1. Route路由
 
+   
 
+2. Predicate断言
 
+   
 
-
+3. Filter过滤器
 
