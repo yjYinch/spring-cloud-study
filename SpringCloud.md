@@ -272,9 +272,7 @@ Feign是Spring Cloud组建中的一个轻量级RESTful的HTTP服务客户端，F
 
    
 
-8. 
-
-
+8. Resolving eureka endpoints via configuration日志打印的原因
 
 
 
@@ -307,7 +305,10 @@ Feign是Spring Cloud组建中的一个轻量级RESTful的HTTP服务客户端，F
 
 2. Predicate断言
 
+   ![image-20210126142500173](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20210126142500173.png)
+
    
 
 3. Filter过滤器
 
+Unmapped Spring configuration files found.  Please configure Spring facet or use 'Create Default Context' to add one including all unmapped files
