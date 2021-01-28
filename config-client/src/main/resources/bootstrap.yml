@@ -1,0 +1,29 @@
+server:
+  port: 8501
+
+spring:
+  application:
+    name: config-client
+  cloud:
+    config:
+      label: master
+      name: config
+      profile: dev
+      uri: http://119.45.223.98:8500
+  rabbitmq:
+    host: 119.45.223.98
+    port: 5672
+    username: guest
+    password: guest
+
+eureka:
+  client:
+    service-url:
+#      defaultZone: http://eureka7001.com:7001/eureka, http://eureka7002.com:7002/eureka
+      defaultZone: http://119.45.223.98:7001/eureka
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
