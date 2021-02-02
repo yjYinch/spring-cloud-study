@@ -72,4 +72,9 @@ public class OrderController {
         String host = serviceInstance.getHost();
         return restTemplate.getForObject(uri+"/payment/getPort", String.class);
     }
+
+    @GetMapping("/get/any")
+    public String getAny(){
+        return "This is a test for Zipkin Sleuth!";
+    }
 }

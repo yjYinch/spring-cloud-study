@@ -312,3 +312,40 @@ Feign是Spring Cloud组建中的一个轻量级RESTful的HTTP服务客户端，F
 3. Filter过滤器
 
 Unmapped Spring configuration files found.  Please configure Spring facet or use 'Create Default Context' to add one including all unmapped files
+
+
+
+## 消息总线Bus
+
+基于MQ实现Config全局配置
+
+
+
+## 消息驱动Stream
+
+![image-20210129114906311](E:\project\my-spring-cloud-study\pictures\spring cloud stream.JPG)
+
+
+
+原理：
+
+> 通过定义绑定器Binder作为中间层，实现了应用程序与消息中间件之间的隔离。
+
+
+
+通信方式：
+
+> 发布订阅模式
+
+
+
+常用注解说明：
+
+| 组成              | 说明                                             |
+| ----------------- | ------------------------------------------------ |
+| Binder            | 中间层，实现了应用程序与消息中间件之间的隔离     |
+| `@Input`          | 输入通道，通过该输入通道接收到的消息进入应用程序 |
+| `@Output`         | 输出通道，发布的消息将通过该通道离开应用程序     |
+| `@StreamListener` | 监听队列，用于消费者的队列的消息接收             |
+| `@EnableBinding`  | 信道channel与exchange绑定                        |
+
