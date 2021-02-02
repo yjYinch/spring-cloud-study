@@ -1,0 +1,31 @@
+server:
+  port: 8803
+
+spring:
+  application:
+    name: spring-cloud-stream-consumer
+  cloud:
+    stream:
+      binders: # 配置要绑定的rabbitmq的相关信息
+        defaultRabbit: # 表示定义的名称，用于binding整合
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: 119.45.223.98
+                port: 5672
+                username: guest
+                password: guest
+      bindings:
+        input: # input表示消息消费者
+          destination: studyExchange
+          content-type: application/json
+          binder: defaultRabbit
+          group: group_mq
+eureka:
+  client:
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka, http://eureka7002.com:7002/eureka
+  instance:
+    instance-id: spring-cloud-stream-consumer
